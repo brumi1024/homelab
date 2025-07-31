@@ -1,19 +1,8 @@
-# Hubble Homelab
-
-**[Documentation](https://kencx.github.io/homelab)**
+# Homelab
 
 This repository contains infrastructure-as-code for the automated deployment and
 configuration, and management of a Hashicorp (Nomad + Consul + Vault) cluster on
 Proxmox.
-
-## Disclaimer
-
-This project is in alpha status and subject to
-[bugs](https://kencx.github.io/homelab/references/issues) and breaking changes.
-
-Please do not run any code on your machine without understanding the
-provisioning flow, in case of data loss. Some playbooks may perform destructive
-actions that are irreversible!
 
 ## Overview
 
@@ -30,24 +19,6 @@ availability (HA). The nodes run Vault, Consul and Nomad as a cluster.
 To support HA, the setup can be further expanded to at least three server nodes
 and multiple client nodes hosted on a Proxmox cluster, spanning multiple
 physical machines.
-
-## Features
-
-- [x] Golden image creation with Packer
-- [x] Declarative configuration of Proxmox VMs and Vault with Terraform
-- [x] Automated post-provisioning with Ansible
-- [x] Nomad container scheduling and orchestration
-- [x] Consul service discovery
-- [x] Secure node communication via mTLS
-- [x] Personal Certificate Authority hosted on Vault
-- [x] Secrets management, retrieval and rotation with Vault
-- [x] Automated certificate management with Vault and consul-template
-- [x] Let's Encrypt certificates on Traefik reverse proxy
-
-## Getting Started
-
-See the [documentation](https://kencx.github.io/homelab/getting_started) for more
-information on the concrete steps to configure and provision the cluster.
 
 ## Folder Structure
 

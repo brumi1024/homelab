@@ -1,4 +1,21 @@
 listen-address={{ ansible_default_ipv4.address }},127.0.0.1
+
+# Forward .consul domain queries to Consul DNS
+server=/consul/127.0.0.1#8600
+
+# Forward reverse DNS for Consul
+rev-server=10.0.0.0/8,127.0.0.1#8600
+
+# Upstream DNS servers for non-Consul queries
 {% for addr in consul_upstream_dns_address %}
 server={{ addr }}
 {% endfor %}
+
+# DNS cache size
+cache-size=1000
+
+# Don't forward short names
+domain-needed
+
+# Don't forward private reverse lookups
+bogus-priv

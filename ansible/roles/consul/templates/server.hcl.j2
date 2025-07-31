@@ -7,6 +7,25 @@ auto_encrypt {
 
 connect {
   enabled = true
+  
+  # Enable multi-port services support
+  enable_mesh_gateway_wan_federation = false
+}
+
+# Performance tuning for v2 APIs
+limits {
+  # Increase limits for v2 catalog operations
+  request_limits {
+    mode = "permissive"
+    read_rate = 500
+    write_rate = 200
+  }
+}
+
+# Enable metrics for monitoring
+telemetry {
+  prometheus_retention_time = "60s"
+  disable_hostname = true
 }
 
 {% if setup_consul_watches %}

@@ -4,11 +4,39 @@ bind_addr   = {% raw %}"{{ GetInterfaceIP \"eth0\" }}"
 {% endraw %}
 client_addr = "0.0.0.0"
 
+# Enable v2 catalog and resource APIs
+experiments = ["resource-apis", "v2tenancy"]
+
 ports {
   http     = 8500
   https    = 8501
   grpc     = 8502
   grpc_tls = 8503
+  dns      = 8600
+}
+
+# DNS configuration for the new DNS server
+dns_config {
+  # Enable the new v2 DNS server (default in 1.19+)
+  # No need to set this explicitly as it's now the default
+  
+  # Allow stale queries for better performance
+  allow_stale = true
+  max_stale = "5s"
+  
+  # Node TTL
+  node_ttl = "30s"
+  
+  # Service TTL  
+  service_ttl = {
+    "*" = "30s"
+  }
+  
+  # Enable DNS compression
+  enable_compression = true
+  
+  # A/AAAA record responses
+  a_record_limit = 3
 }
 
 # bind http port to localhost only
